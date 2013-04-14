@@ -37,15 +37,14 @@ ensure_symlink () {
     target=$1
     lpath=$2
 
-    # Link already exists, and is pointing at the right place?
-    [ -L "$lpath" ] &&
-    [ "$(readlink "$lpath")" = "$target" ] &&
-    return 0
-
     if [ ! -e "$target" ]
     then
         echo "ERROR: Skipping '$lpath': link target '$target' does not exist!"
         return 1
+    elif ([ -L "$lpath" ] && [ "$(readlink "$lpath")" = "$target" ])
+    then
+        # Link already exists, and is pointing at the right place
+        return 0
     elif [ -d "$lpath" ]
     then
         # Dir exists; delete it?
