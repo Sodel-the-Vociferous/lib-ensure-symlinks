@@ -48,7 +48,7 @@ ensure_symlink () {
     elif [ -d "$lpath" ]
     then
         # Dir exists; delete it?
-        confirm "WARNING: '$lpath' is a directory! Link it to '$target'?" \
+        confirm "WARNING: '$lpath' is a directory! Delete it?" \
             "yes" ||
         return 1
 
