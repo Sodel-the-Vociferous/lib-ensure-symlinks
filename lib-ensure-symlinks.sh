@@ -1,6 +1,6 @@
 #!/bin/bash
 # Written by Daniel Ralston
-# Version 0.1
+# Version 0.1.1
 
 confirm_bool () {
     case $1 in
@@ -53,7 +53,7 @@ ensure_symlink () {
         return 1
 
         rm -rf "$lpath"
-    elif [ -e "$lpath" ]
+    elif [ -e "$lpath" ] || [ -L "$lpath" ]
     then
         # File exists; delete it?
         confirm "WARNING: File '$lpath' exists. Delete it?" ||
